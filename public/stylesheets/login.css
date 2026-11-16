@@ -2,6 +2,8 @@
     --primary-color: #183F30;
     --gold: #E8CE63;
     --grey: #D1DFD3;
+    --background: #F5F6F2;
+    --white: #FFFFFF;
 }
 
 body {
@@ -15,16 +17,14 @@ body {
 }
 #loginContainer1 {
     background-color: var(--primary-color);
-    align-content: center;
+    padding-top: 50px;
+    align-content: top;
     justify-items: center;
 }
 #innerContainer1 {
     width: fit-content;
     height: fit-content;
-    max-width: 500px;
-}
-#loginContainer2 {
-    background-color: white;
+    max-width: 700px;
 }
 #schoolTxt {
     color: var(--gold);
@@ -34,7 +34,7 @@ body {
     width: 170px;
 }
 #schoolCampus {
-    color: white;
+    color: var(--white);
     font-size: 3.7rem;
     line-height: 70px;
 }
@@ -48,10 +48,13 @@ body {
     color: white;
     font-size: 2rem;
     font-family: sans-serif;
+    max-width: 400px;
 }
 #odciTxt {
     color: var(--grey);
     font-family: sans-serif;
+    font-size: 1.2rem;
+    width: 300px;
 }
 @media screen and (max-width: 421px) {
     body {
@@ -62,4 +65,85 @@ body {
         width: 100vw;
         height: 50vh;
     }
+}
+
+
+#loginContainer2 {
+    background-color: var(--background);
+    padding-top: 50px;
+    align-content: top;
+    justify-items: center;
+}
+#innerContainer2 {
+    padding-top: 50px;
+    width: 500px;
+    height: fit-content;
+    max-width: 700px;
+}
+#welcomeTxt {
+    color: #202C26;
+    font-size: 3rem;
+    font-weight: 500;
+}
+#welcomeMiniTxt {
+    font-size: 1.5rem;
+    color: #5C6D62;
+}
+label {
+    position: absolute;
+    pointer-events: none;
+    font-family: sans-serif;
+    font-weight: 100;
+    font-size: 1.3rem;
+    color: #202C26;
+}
+.userInputs {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    background-color: var(--white);
+    border-radius: 10px;
+    border: #BBC8BD solid 2px;
+    height: 60px;
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+#innerContainer2>div {
+    width: 100%;
+    height: fit-content;
+}
+#forgotPassContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+#forgotPass {
+    align-self: flex-end;
+}
+#rememberContainer {
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+}
+#rememberTxt {
+    margin-left: 10px;
+    color: #202C26;
+    align-content: center;
+}
+#forgotPassChild {
+    align-content: center;
+}
+#forgotPass {
+    color: var(--primary-color);
+    font-weight: 900;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+#loginBtn {
+    background-color: var(--primary-color);
+    color: var(--white);
+    width: 100%;
+    height: 65px;
+    font-size: 1.3rem;
+    font-family: sans-serif;
 }

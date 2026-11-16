@@ -24,6 +24,32 @@
         </div>
     </div>
     <div class="loginTwoContainer" id="loginContainer2">
+        <form id="innerContainer2" action="" method="">
+            <br>
+            <p id="welcomeTxt">Welcome back.</p>
+            <p id="welcomeMiniTxt">Sign in to manage faculty activities and reports</p>
+            <br>
+            <div>
+                <label for="username-email">User Name/University Email</label>
+                <input class="userInputs" type="text" name="username-email" 
+                pattern="^([^@]+|[^@\s]+@cvsu\.edu\.ph)$" 
+                oninvalid="this.setCustomValidity('Please enter username or university email(sample@cvsu.edu.ph)')"
+                placeholder="Enter your username or university email">
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input class="userInputs" type="password" name="password" placeholder="Enter your password">
+            </div>
+            <div id="forgotPassContainer">
+                <div id="rememberContainer">
+                    <input type="checkbox" name="rememberMe" id="rememberId"> <p id="rememberTxt">Remember me</p>
+                </div>
+                <div id="forgotPassChild">
+                    <a href="" id="forgotPass">Forgot password?</a>
+                </div>
+            </div>
+            <input type="submit" value="Log in" id="loginBtn">
+        </div>
     </div>
 </body>
 </html>
