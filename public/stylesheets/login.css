@@ -1,0 +1,65 @@
+:root {
+    --primary-color: #183F30;
+    --gold: #E8CE63;
+    --grey: #D1DFD3;
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+}
+.loginTwoContainer {
+    width: 50vw;
+    height: 100vh;
+    background-color: blue;
+}
+#loginContainer1 {
+    background-color: var(--primary-color);
+    align-content: center;
+    justify-items: center;
+}
+#innerContainer1 {
+    width: fit-content;
+    height: fit-content;
+    max-width: 500px;
+}
+#loginContainer2 {
+    background-color: white;
+}
+#schoolTxt {
+    color: var(--gold);
+    font-family: sans-serif;
+}
+#schoolLogo {
+    width: 170px;
+}
+#schoolCampus {
+    color: white;
+    font-size: 3.7rem;
+    line-height: 70px;
+}
+#lineBreak {
+    border: none;
+    height: 3.5px;
+    width: 75px;
+    background-color: var(--gold);
+}
+#facultyAsync {
+    color: white;
+    font-size: 2rem;
+    font-family: sans-serif;
+}
+#odciTxt {
+    color: var(--grey);
+    font-family: sans-serif;
+}
+@media screen and (max-width: 421px) {
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+    .loginTwoContainer {
+        width: 100vw;
+        height: 50vh;
+    }
+}
