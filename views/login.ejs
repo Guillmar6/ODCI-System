@@ -26,19 +26,23 @@
     <div class="loginTwoContainer" id="loginContainer2">
         <form id="innerContainer2" action="" method="">
             <br>
+            <img src="/images/cvsu-logo.png" alt="CVSU logo" id="loginLogo">
             <p id="welcomeTxt">Welcome back.</p>
             <p id="welcomeMiniTxt">Sign in to manage faculty activities and reports</p>
             <br>
             <div>
-                <label for="username-email">User Name/University Email</label>
-                <input class="userInputs" type="text" name="username-email" 
+                <label for="username_email">User Name/University Email<a id="sampleEmail">(sample@cvsu.edu.ph)</a></label>
+                <input class="userInputs" type="text" name="username_email" 
                 pattern="^([^@]+|[^@\s]+@cvsu\.edu\.ph)$" 
                 oninvalid="this.setCustomValidity('Please enter username or university email(sample@cvsu.edu.ph)')"
-                placeholder="Enter your username or university email">
+                placeholder="Enter your username or university email(sample@cvsu.edu.ph)"
+                value="<%= username_email %>">
             </div>
             <div>
                 <label for="password">Password</label>
-                <input class="userInputs" type="password" name="password" placeholder="Enter your password">
+                <input class="userInputs" type="password" name="password" 
+                placeholder="Enter your password"
+                value="<%= password %>">
             </div>
             <div id="forgotPassContainer">
                 <div id="rememberContainer">
@@ -49,7 +53,25 @@
                 </div>
             </div>
             <input type="submit" value="Log in" id="loginBtn">
-        </div>
+        </form>
     </div>
+
+    <% if (typeof error !== 'undefined' && error) { %>
+        <dialog id="popup" class="popup-box">
+            <div id="error-popup">
+                <p id="error-popup-title"><%= title %></p>
+                <p id="error-popup-txt"><%= error %></p>
+                <div id="error-popup-button-container">
+                    <button onclick="this.closest('dialog').close()" id="error-popup-button">OK</button>
+                </div>
+            </div>
+        </dialog>
+
+        <script>
+            // Automatically open as soon as the page loads
+            document.getElementById('popup').showModal();
+        </script>
+    <% } %>
+
 </body>
 </html>
