@@ -7,13 +7,13 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/login', function(req, res, next) {
-  const values = req.query;
-  res.render('login', {
-    title: values.title,
-    error: values.error, 
-    username_email: values.username_email, 
-    password: values.password 
-  });
+  const values = req.body;
+  res.render('login', {});
+});
+
+router.get('/admin/login', function(req, res, next) {
+  const values = req.body;
+  res.render('adminLogin', {});
 });
 
 module.exports = router;

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ODCI</title>
+    <link rel="stylesheet" href="/stylesheets/reset.css">
+    <link rel="stylesheet" href="/stylesheets/login.css">
+    <link rel="shortcut icon" href="/images/cvsu-logo.png" type="image/x-icon">
+    <script src="/javascripts/alert.js"></script>
+</head>
+<body>
+    <div class="loginTwoContainer" id="loginContainer1">
+        <div id="innerContainer1">
+            <h3 id="schoolTxt">CAVITE STATE UNIVERSITY</h3>
+            <br>
+            <img src="/images/cvsu-logo.png" alt="CVSU logo" id="schoolLogo">
+            <br>
+            <p id="schoolCampus">Cavite State University Naic Campus</p>
+            <br>
+            <hr id="lineBreak">
+            <br>
+            <p id="facultyAsync">Faculty Asynchronous Activity Tracker</p>
+            <br>
+            <p id="odciTxt">Office of the Director for Curriculum and Instruction</p>
+        </div>
+    </div>
+    <div class="loginTwoContainer" id="loginContainer2">
+        <form id="innerContainer2" action="/api/admin/login" method="post">
+            <br>
+            <img src="/images/cvsu-logo.png" alt="CVSU logo" id="loginLogo">
+            <p id="welcomeTxt">Welcome back.</p>
+            <p id="welcomeMiniTxt">Sign in to manage faculty activities and reports</p>
+            <br>
+            <div>
+                <label for="username_email">User Name/University Email<a id="sampleEmail">(sample@cvsu.edu.ph)</a></label>
+                <input class="userInputs" type="text" name="username_email" 
+                pattern="^([^@]+|[^@\s]+@cvsu\.edu\.ph)$" 
+                oninvalid="this.setCustomValidity('Please enter username or university email(sample@cvsu.edu.ph)')"
+                placeholder="Enter your username or university email(sample@cvsu.edu.ph)">
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input class="userInputs" type="password" name="password" 
+                placeholder="Enter your password">
+            </div>
+            <div id="forgotPassContainer">
+                <div id="rememberContainer">
+                    <input type="checkbox" name="rememberMe" id="rememberId"> <p id="rememberTxt">Remember me</p>
+                </div>
+                <div id="forgotPassChild">
+                    <a href="" id="forgotPass">Forgot password?</a>
+                </div>
+            </div>
+            <input type="submit" value="Log in" id="loginBtn">
+        </form>
+    </div>
+
+</body>
+</html>

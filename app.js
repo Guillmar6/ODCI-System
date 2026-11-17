@@ -7,6 +7,7 @@ const rateLimit = require('express-rate-limit');
 
 var loginRouter = require('./routes/login');
 var usersRouter = require('./routes/users');
+const apisRouter = require('./routes/apis');
 
 var app = express();
 const limiter = rateLimit({
@@ -27,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', loginRouter);
 app.use('/users', usersRouter);
+app.use('/api', apisRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

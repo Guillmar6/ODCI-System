@@ -31,18 +31,6 @@ function admins() {
         );
     `);
 }
-function super_admin() {
-    template(`
-        CREATE TABLE IF NOT EXISTS "super_admin"(
-            id SERIAL PRIMARY KEY,
-            super_admin_name VARCHAR(255) NOT NULL,
-            super_admin_email VARCHAR(255) UNIQUE NOT NULL,
-            super_admin_password VARCHAR(255) NOT NULL,
-            role VARCHAR(255) NOT NULL
-        )
-    `);
-}
 
 users();
 admins();
-super_admin();

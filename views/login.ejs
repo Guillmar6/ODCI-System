@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/stylesheets/reset.css">
     <link rel="stylesheet" href="/stylesheets/login.css">
     <link rel="shortcut icon" href="/images/cvsu-logo.png" type="image/x-icon">
+    <script src="/javascripts/alert.js"></script>
 </head>
 <body>
     <div class="loginTwoContainer" id="loginContainer1">
@@ -25,7 +26,7 @@
         </div>
     </div>
     <div class="loginTwoContainer" id="loginContainer2">
-        <form id="innerContainer2" action="" method="">
+        <form id="innerContainer2" action="/api/login" method="post">
             <br>
             <img src="/images/cvsu-logo.png" alt="CVSU logo" id="loginLogo">
             <p id="welcomeTxt">Welcome back.</p>
@@ -36,14 +37,12 @@
                 <input class="userInputs" type="text" name="username_email" 
                 pattern="^([^@]+|[^@\s]+@cvsu\.edu\.ph)$" 
                 oninvalid="this.setCustomValidity('Please enter username or university email(sample@cvsu.edu.ph)')"
-                placeholder="Enter your username or university email(sample@cvsu.edu.ph)"
-                value="<%= username_email %>">
+                placeholder="Enter your username or university email(sample@cvsu.edu.ph)">
             </div>
             <div>
                 <label for="password">Password</label>
                 <input class="userInputs" type="password" name="password" 
-                placeholder="Enter your password"
-                value="<%= password %>">
+                placeholder="Enter your password"">
             </div>
             <div id="forgotPassContainer">
                 <div id="rememberContainer">
@@ -56,23 +55,6 @@
             <input type="submit" value="Log in" id="loginBtn">
         </form>
     </div>
-
-    <% if (typeof error !== 'undefined' && error) { %>
-        <dialog id="popup" class="popup-box">
-            <div id="error-popup">
-                <p id="error-popup-title"><%= title %></p>
-                <p id="error-popup-txt"><%= error %></p>
-                <div id="error-popup-button-container">
-                    <button onclick="this.closest('dialog').close()" id="error-popup-button">OK</button>
-                </div>
-            </div>
-        </dialog>
-
-        <script>
-            // Automatically open as soon as the page loads
-            document.getElementById('popup').showModal();
-        </script>
-    <% } %>
 
 </body>
 </html>
