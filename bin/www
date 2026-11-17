@@ -26,6 +26,7 @@ var server = http.createServer(app);
  */
 
 require('../config/db_tables');
+require('../config/superadmin');
 
 server.listen(port);
 server.on('error', onError);

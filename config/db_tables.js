@@ -1,8 +1,8 @@
 const pool = require('./db');
 
-async function template(sqlCode) {
+function template(sqlCode) {
     try {
-        const result = await pool.query(sqlCode);
+        const result = pool.query(sqlCode);
     } catch (err) {
         console.error(err);
     }
