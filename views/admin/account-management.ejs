@@ -1,49 +1,54 @@
 <div id="accountManagementContainer">
-    <div id="mainContainer">
-        <div id="accountManagementTitleContainer">
-            <span>Account Management</span>
-            <span>Manage university accounts and access roles.</span>
+    <div id="accountManagementChild">
+        <div id="mainContainer">
+            <div id="accountManagementTitleContainer">
+                <span>Account Management</span>
+                <span>Manage university accounts and access roles.</span>
+            </div>
+            <div id="addNewBtnContainer">
+                <button id="addNewAccountBtn">+ Add new account</button>
+            </div>
         </div>
-        <div id="addNewBtnContainer">
-            <button id="addNewAccountBtn">+ Add new account</button>
+        <div id="accountListContainer">
+            <table>
+                <thead>
+                    <tr>
+                        <th>FACULTY NAME</th>
+                        <th>EMAIL ADDRESS</th>
+                        <th>PASSWORD</th>
+                        <th>ROLE</th>
+                        <th>JOINED DATE</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Sample Name</th>
+                        <th>sample@cvsu.edu.ph</th>
+                        <th>****</th>
+                        <th>itd-faculty</th>
+                        <th>00/00/00</th>
+                        <th>
+                            <button style="border: 1px solid grey; border-radius: 5px; border-top: transparent; border-bottom: transparent; background-color: white; cursor: pointer;">Edit</button>
+                            <button>Remove</button>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-    </div>
-    <div id="accountListContainer">
-        <table>
-            <thead>
-                <tr>
-                    <th>FACULTY NAME</th>
-                    <th>EMAIL ADDRESS</th>
-                    <th>PASSWORD</th>
-                    <th>ROLE</th>
-                    <th>JOINED DATE</th>
-                    <th>ACTION</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th>Sample Name</th>
-                    <th>sample@cvsu.edu.ph</th>
-                    <th>****</th>
-                    <th>itd-faculty</th>
-                    <th>00/00/00</th>
-                    <th>
-                        <button style="border: 1px solid grey; border-radius: 5px; border-top: transparent; border-bottom: transparent; background-color: white; cursor: pointer;">Edit</button>
-                        <button>Remove</button>
-                    </th>
-                </tr>
-            </tbody>
-        </table>
     </div>
 </div>
 <style>
     #accountManagementContainer {
         width: 100%;
         height: fit-content;
-        padding-left: 80px;
-        padding-right: 80px;
-        padding-top: 80px;
-        overflow-x: scroll;
+        padding: 80px;
+        overflow-x: auto;
+        scrollbar-width: thin;
+        scrollbar-color: #8f8f8f #FFFFFF;
+    }
+    #accountManagementChild {
+        min-width: 800px;
     }
     #mainContainer {
         display: flex;
@@ -60,11 +65,14 @@
         color: #e6e6e6;
         cursor: pointer;
         box-shadow: #00000052 2px 2px 3px 3px;
+        font-family: system-ui, -apple-system, sans-serif;
+        font-size: 1rem;
+        font-weight: 400 !important;
     }
     #accountManagementTitleContainer {
         display: flex;
         flex-direction: column;
-        min-width: 500px;
+        width: 500px;
         height: 100px;
         flex: 1
     }
@@ -104,5 +112,10 @@
         text-align: left;
         height: 80px;
         padding-left: 30px;
+    }
+    @media screen and (max-width: 1110px) {
+        #accountManagementContainer {
+            padding: 8vw;
+        }
     }
 </style>
