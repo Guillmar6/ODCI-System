@@ -26,7 +26,11 @@ var server = http.createServer(app);
  */
 
 require('../config/db_tables');
-require('../config/superadmin');
+console.log('Adding superadmin...');
+setTimeout(() => {
+  console.log('Added successfully!');
+  require('../config/superadmin');
+}, 1000);
 
 server.listen(port);
 server.on('error', onError);

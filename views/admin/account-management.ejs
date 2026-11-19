@@ -6,7 +6,7 @@
                 <span>Manage university accounts and access roles.</span>
             </div>
             <div id="addNewBtnContainer">
-                <button id="addNewAccountBtn">+ Add new account</button>
+                <a id="addNewAccountBtn" href="#addAccount">+ Add new account</a>
             </div>
         </div>
         <div id="accountListContainer">
@@ -58,6 +58,11 @@
         align-content: center;
     }
     #addNewAccountBtn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
         width: 180px;
         height: 45px;
         border-radius: 10px;

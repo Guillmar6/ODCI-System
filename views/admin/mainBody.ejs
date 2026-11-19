@@ -7,6 +7,114 @@
     <%- include('../components/heads') %>
 </head>
 <body>
+    <div id="addAccountBackContainer">
+        <form id="addAccountContainer">
+            <span id="addAccountTitle">Add new account</span>
+            <div class="inputContainers">
+                <label for="facultyName">Faulty name</label>
+                <input name="facultyName" type="text" placeholder="Enter faculty name" required>
+            </div>
+            <div class="inputContainers">
+                <label for="email">Email address</label>
+                <input name="email" type="text" placeholder="Enter university email" required>
+            </div>
+            <div class="inputContainers">
+                <label for="password">Password</label>
+                <input name="password" type="password" placeholder="Set a password" required>
+            </div>
+            <div class="inputContainers">
+                <label for="role">Role</label>
+                <select name="role" id="roleContainer" required>
+                    <option value="">-- Select an option --</option>
+                    <option value="facultyMember">Faculty member</option>
+                    <option value="chairPerson">Chair person</option>
+                </select>
+            </div>
+            <div style="width: 100%; padding-top: 10px; padding-bottom: 30px;">
+                <span style="font-size: 1.1rem; font-weight: 500 !important; color: #2e2e2e;">All field are required.</span>
+            </div>
+            <div>
+                <a href="#" class="addAccountBtnConfirmation" id="addAccountCancelBtn">Cancel</a>
+                <a href="#" class="addAccountBtnConfirmation" id="addAccountCreateBtn">Create account</a>
+            </div>
+        </form>
+    </div>
+    <style>
+        #addAccountContainer {
+            position: fixed;
+            display: none;
+            flex-direction: column;
+            width: 80vw;
+            max-width: 760px;
+            min-width: 250px;
+            height: fit-content;
+            border: 2px solid #d1d1d1;
+            border-radius: 10px;
+            background-color: #FFFFFF;
+            box-shadow: #0000002c 2px 2px 3px 3px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 40px;
+        }
+        #addAccountTitle {
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 1.8rem;
+            font-weight: 600 !important;
+            color: #1a1a1a;
+        }
+        .inputContainers {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+            margin-top: 20px;
+        }
+        .inputContainers>label {
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600 !important;
+            color: #424242;
+        }
+        .inputContainers>input, .inputContainers>#roleContainer {
+            border: 2px solid #b9b9b9;
+            border-radius: 8px;
+            width: 100%;
+            height: 60px;
+            padding-left: 20px;
+            padding-right: 20px;
+            background-color: #e9e9e9;
+            color: #161616;
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600 !important;
+        }
+        .inputContainers>#roleContainer>option {
+            color: #161616;
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600 !important;
+        }
+        #roleContainer {
+            border-radius: 10px;
+        }
+        .addAccountBtnConfirmation {
+            text-decoration: none;
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 1.3rem;
+            font-weight: 500 !important;
+            width: 100px;
+            height: 50px;
+            border: 2px solid #d1d1d1;
+            border-radius: 10px;
+        }
+        #addAccountCancelBtn {
+            color: #183F30;
+        }
+        #addAccountCreateBtn {
+            background-color: #183F30;
+            color: #FFFFFF;
+        }
+    </style>
     <%- include('../components/header', { profileName: profileName, role: role}) %>
     <%- include('../components/navigationBarAdmin', { currentNav: currentNav }) %>
 
@@ -17,5 +125,17 @@
     <% } %>
 
     <%- include('../components/footer') %>
+
+    <script>
+        const addAccountContainer = document.getElementById('addAccountContainer');
+        function hashChanged() {
+            addAccountContainer.style.display = "none";
+            if(window.location.hash === "#addAccount") {
+                addAccountContainer.style.display = "flex";
+            }
+        }
+        window.addEventListener("hashchange", hashChanged);
+        window.addEventListener("DOMContentLoaded", hashChanged);
+    </script>
 </body>
 </html>
