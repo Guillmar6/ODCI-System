@@ -17,6 +17,7 @@
     "http-errors": "~1.6.3",
     "jsonwebtoken": "^9.0.3",
     "morgan": "~1.9.1",
+    "nodemailer": "^10.6.0",
     "pg": "^8.23.1"
   }
 }

@@ -7,7 +7,8 @@ const rateLimit = require('express-rate-limit');
 
 var loginRouter = require('./routes/login');
 var usersRouter = require('./routes/users');
-const apisRouter = require('./routes/apis');
+const apisAuthRouter = require('./routes/apisAuth');
+const apisNoAuthRouter = require('./routes/apisNoAuth');
 const adminRouter = require('./routes/admin');
 const { 
   authenticateToken,
@@ -33,7 +34,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', loginRouter);
 app.use('/users', usersRouter);
-app.use('/api', apisRouter);
+app.use('/api', apisNoAuthRouter);
+app.use('/api', apisAuthRouter);
 app.use('/admin', authenticateToken, authorizedRole('admin', 'superAdmin'), adminRouter);
 
 // catch 404 and forward to error handler
