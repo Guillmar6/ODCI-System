@@ -2,6 +2,8 @@ require('dotenv').config();
 const nodemailer = require('nodemailer');
 const express = require('express');
 
+const pool = require('../config/db');
+
 const router = express.Router();
 
 // Send Email message
@@ -26,6 +28,68 @@ router.post('/sendEmailMessage', async function(req, res, next) {
             subject: subject,
             message: message
         });
+    } catch (err) {
+        console.error(err);
+    }
+});
+
+// Add user account
+router.post('/addNewAccount', async function(req, res, next) {
+    const {
+        facultyName,
+        email,
+        password,
+        department,
+        role,
+        date
+    } = req.body;
+
+    var deptNum = null;
+    switch (department) {
+        case 'ITD':
+            deptNum = 1;
+            break;
+        case 'TED':
+            deptNum = 2;
+            break;
+        case 'ASD':
+            deptNum = 3;
+            break;
+        default:
+            break;
+    }
+    
+    try {
+        if(!date) {
+            const result = await pool.query(`
+                INSERT INTO "users"(faculty_name, email, password, department, role)
+                SELECT '${facultyName}', '${email}', '${password}', '${deptNum}', '${role}'
+                WHERE NOT EXISTS(
+                    SELECT 1 FROM users WHERE faculty_name='${facultyName}'
+                );
+            `);
+        } else {
+            const result = await pool.query(`
+                INSERT INTO "users"(faculty_name, email, password, department, role, joined_date)
+                SELECT '${facultyName}', '${email}', '${password}', '${deptNum}', '${role}', '${date}'
+                WHERE NOT EXISTS(
+                    SELECT 1 FROM users WHERE faculty_name='${facultyName}'
+                );
+            `);
+        }
+        res.status(200).json({message: 'Account created.'});
+    } catch (err) {
+        console.error(err);
+    }
+});
+
+// Get departments
+router.get('/getDepartments', async function(req, res, next) {
+    try {
+        const result = await pool.query(`
+            SELECT department_name FROM departments
+        `);
+        res.status(200).json({departments: result.rows});
     } catch (err) {
         console.error(err);
     }

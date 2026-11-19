@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', loginRouter);
 app.use('/users', usersRouter);
 app.use('/api', apisNoAuthRouter);
-app.use('/api', authenticateToken, authorizedRole('admin', 'superAdmin'), apisAuthRouter);
+app.use('/apiAuth', authenticateToken, authorizedRole('admin', 'superAdmin'), apisAuthRouter);
 app.use('/admin', authenticateToken, authorizedRole('admin', 'superAdmin'), adminRouter);
 
 // catch 404 and forward to error handler

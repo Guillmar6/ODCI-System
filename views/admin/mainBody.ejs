@@ -45,7 +45,7 @@
             </div>
             <div style="display: flex; flex-direction: row;">
                 <a href="#" style="text-decoration: none;"><div class="addAccountBtnConfirmation" id="addAccountCancelBtn">Cancel</div></a>
-                <a href="#" style="text-decoration: none;"><div class="addAccountBtnConfirmation" id="addAccountCreateBtn">Create account</div></a>
+                <a href="#" style="text-decoration: none;"><button class="addAccountBtnConfirmation" id="addAccountCreateBtn" onclick="sendNewAccount()">Create account</button></a>
             </div>
         </form>
     </div>
@@ -153,6 +153,50 @@
         }
         window.addEventListener("hashchange", hashChanged);
         window.addEventListener("DOMContentLoaded", hashChanged);
+
+
+        const departmentContainer = document.getElementById('departmentContainer');
+        async function getDepartments() {
+            try {
+                const response = await fetch('/apiAuth/getDepartments');
+                if(!response.ok) return console.error('Error fetching departments: ' + response.status);
+
+                const result = await response.json();
+                result.departments.forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item.department_name;
+                    option.textContent = item.department_name;
+                    departmentContainer.appendChild(option);
+                });
+            } catch (err) {
+                console.error(err);
+            }
+        }
+        getDepartments();
+
+        const form = document.getElementById('addAccountContainer');
+        async function sendNewAccount() {
+            const formData = new FormData(form);
+            const payload = Object.fromEntries(formData.entries());
+
+            try {
+                const response = await fetch('/apiAuth/addNewAccount', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if(!response.ok) return console.error(response.status);
+
+                const result = await response.json();
+                console.log('Account created successfully: ', result);
+                form.reset();
+            } catch (err) {
+                console.error(err);
+            }
+        }
     </script>
 </body>
 </html>
