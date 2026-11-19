@@ -9,6 +9,13 @@
 <body>
     <%- include('../components/header', { profileName: 'Abigail S. Limos', role: 'Admin'}) %>
     <%- include('../components/navigationBarAdmin', { currentNav: currentNav }) %>
+
+    <% if (currentNav == 'dashboard') { %>
+        <%- include(currentNav) %>
+    <% } else if (currentNav == 'account-management') { %>
+        <%- include(currentNav) %>
+    <% } %>
+
     <%- include('../components/footer') %>
 </body>
 </html>
