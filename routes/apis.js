@@ -83,8 +83,8 @@ router.post('/admin/login', async function(req, res, next) {
     res.redirect('/admin/dashboard');
 });
 
-
-router.post('/logout', async function(req, res, next) {
+// Logout
+router.get('/logout', async function(req, res, next) {
     res.clearCookie('token', {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',

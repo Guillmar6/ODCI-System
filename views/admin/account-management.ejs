@@ -21,17 +21,17 @@
                         <th>ACTION</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="accountListBody">
                     <tr>
-                        <th>Sample Name</th>
-                        <th>sample@cvsu.edu.ph</th>
-                        <th>****</th>
-                        <th>itd-faculty</th>
-                        <th>00/00/00</th>
-                        <th>
-                            <button style="border: 1px solid grey; border-radius: 5px; border-top: transparent; border-bottom: transparent; background-color: white; cursor: pointer;">Edit</button>
+                        <td>Sample Name</td>
+                        <td>sample@cvsu.edu.ph</td>
+                        <td>****</td>
+                        <td>itd-faculty</td>
+                        <td>00/00/00</td>
+                        <td>
+                            <button>Edit</button>
                             <button>Remove</button>
-                        </th>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -109,7 +109,7 @@
         background-color: #e9e9e9;
         padding-left: 10px;
     }
-    th {
+    th, td {
         font-family: system-ui, -apple-system, sans-serif;
         font-size: 1rem;
         font-weight: 500 !important;
@@ -117,6 +117,26 @@
         text-align: left;
         height: 80px;
         padding-left: 30px;
+    }
+    #accountListBody>tr>td {
+        border-top: 2px solid #d4d4d4;
+    }
+    #accountListBody>tr>td>button {
+        border: 1px solid grey; 
+        border-radius: 5px; 
+        border-top: transparent; 
+        border-bottom: transparent; 
+        background-color: white; 
+        cursor: pointer;
+        font-family: system-ui, -apple-system, sans-serif;
+        font-size: 1.1rem;
+        font-weight: 600 !important;
+    }
+    #accountListBody>tr>td>button:first-child {
+        color: #183F30;
+    }
+    #accountListBody>tr>td>button:last-child {
+        color: #FF0000;
     }
     @media screen and (max-width: 1110px) {
         #accountManagementContainer {

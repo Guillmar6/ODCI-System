@@ -25,12 +25,7 @@
 <script>
     async function logout() {
         try {
-            const response = await fetch('/api/logout', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
+            const response = await fetch('/api/logout');
             if(!response.ok) return console.error('Logout failed with status: ', response.status);
             window.location.href = '/';
         } catch (err) {
