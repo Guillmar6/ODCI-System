@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 
 const router = express.Router();
 
-// login api for ADMIN
+// login api for USERS
 router.post('/login', async function(req, res, next) {
     const values = req.body;
     try {
@@ -44,7 +44,7 @@ router.post('/login', async function(req, res, next) {
     res.redirect('/dashboard');
 });
 
-// login api for SUPERADMIN
+// login api for ADMINS
 router.post('/admin/login', async function(req, res, next) {
     const values = req.body;
     try {
@@ -81,6 +81,18 @@ router.post('/admin/login', async function(req, res, next) {
         console.error(err);
     }
     res.redirect('/admin/dashboard');
+});
+
+
+router.post('/logout', async function(req, res, next) {
+    res.clearCookie('token', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict'
+    });
+    res.status(201).json({
+        message: 'Logged out successfully'
+    });
 });
 
 module.exports = router;

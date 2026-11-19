@@ -12,7 +12,7 @@
         <span id="role"><%= role %></span>
     </div>
     <div id="signOutContainer">
-        <button id="signOutBtn" onclick="">Sign out</button>
+        <button id="signOutBtn" onclick="logout()">Sign out</button>
     </div>
     <div id="menuContainer">
         <button id="menuBtn">
@@ -22,6 +22,22 @@
         </button>
     </div>
 </header>
+<script>
+    async function logout() {
+        try {
+            const response = await fetch('/api/logout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            if(!response.ok) return console.error('Logout failed with status: ', response.status);
+            window.location.href = '/';
+        } catch (err) {
+            console.error(err);
+        }
+    }
+</script>
 <style>
     header {
         width: 100%;
