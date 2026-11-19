@@ -193,6 +193,7 @@
                 const result = await response.json();
                 console.log('Account created successfully: ', result);
                 form.reset();
+                window.location.href = '#';
             } catch (err) {
                 console.error(err);
             }
