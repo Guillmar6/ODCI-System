@@ -7,7 +7,7 @@
     <%- include('../components/heads') %>
 </head>
 <body>
-    <%- include('../components/header', { profileName: 'Abigail S. Limos', role: 'Admin'}) %>
+    <%- include('../components/header', { profileName: profileName, role: role}) %>
     <%- include('../components/navigationBarAdmin', { currentNav: currentNav }) %>
 
     <% if (currentNav == 'dashboard') { %>

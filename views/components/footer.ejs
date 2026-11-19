@@ -22,11 +22,18 @@
     }
     #footerSpace {
         flex: 1;
+        min-width: 10px;
         height: 100%;
     }
     #footerTextContainer>span {
         font-family: system-ui, -apple-system, sans-serif;
         font-size: 1rem;
         font-weight: 300 !important;
+    }
+    @media screen and (max-width: 1110px) {
+        footer {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
     }
 </style>

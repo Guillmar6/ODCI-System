@@ -11,7 +11,7 @@
         min-height: 65px;
         height: fit-content;
         align-content: center;
-        padding-left: 190px;
+        padding-left: clamp(10px, 10vw, 190px);
         border-bottom: 1px solid #d6d6d6;
     }
     #navigationBarAdmin>span {
@@ -26,6 +26,9 @@
         cursor: pointer;
         text-decoration: none;
         color: #999999;
+    }
+    @media screen and (max-width: 1110px) {
+        #navigationBarAdmin {}
     }
 </style>
 <script>

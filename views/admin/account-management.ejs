@@ -1,7 +1,12 @@
 <div id="accountManagementContainer">
-    <div id="accountManagementTitleContainer">
-        <span>Account Management</span>
-        <span>Manage university accounts and access roles.</span>
+    <div id="mainContainer">
+        <div id="accountManagementTitleContainer">
+            <span>Account Management</span>
+            <span>Manage university accounts and access roles.</span>
+        </div>
+        <div id="addNewBtnContainer">
+            <button id="addNewAccountBtn">+ Add new account</button>
+        </div>
     </div>
     <div id="accountListContainer">
         <table>
@@ -38,12 +43,30 @@
         padding-left: 80px;
         padding-right: 80px;
         padding-top: 80px;
+        overflow-x: scroll;
+    }
+    #mainContainer {
+        display: flex;
+        flex-direction: row;
+    }
+    #addNewBtnContainer {
+        align-content: center;
+    }
+    #addNewAccountBtn {
+        width: 180px;
+        height: 45px;
+        border-radius: 10px;
+        background-color: #183F30;
+        color: #e6e6e6;
+        cursor: pointer;
+        box-shadow: #00000052 2px 2px 3px 3px;
     }
     #accountManagementTitleContainer {
         display: flex;
         flex-direction: column;
-        width: 500px;
+        min-width: 500px;
         height: 100px;
+        flex: 1
     }
     #accountManagementTitleContainer>span {
         font-family: system-ui, -apple-system, sans-serif;

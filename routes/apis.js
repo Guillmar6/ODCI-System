@@ -61,7 +61,7 @@ router.post('/admin/login', async function(req, res, next) {
         const token = jwt.sign(
             {
                 id: result.rows[0].id,
-                name: result.rows[0].admin_name,
+                admin_name: result.rows[0].admin_name,
                 role: result.rows[0].role
             },
             process.env.JWT_TOKEN,

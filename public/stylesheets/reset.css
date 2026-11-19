@@ -53,3 +53,9 @@ h1, h2, h3, h4, h5, h6 {
 #root, #__next {
   isolation: isolate;
 }
+html {
+  font-size: clamp(12px, 1vw + 2px, 16px);
+}
+span {
+  cursor: default;
+}
