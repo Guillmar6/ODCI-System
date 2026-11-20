@@ -135,11 +135,7 @@
     <%- include('../components/header', { profileName: profileName, role: role}) %>
     <%- include('../components/navigationBarAdmin', { currentNav: currentNav }) %>
 
-    <% if (currentNav == 'dashboard') { %>
-        <%- include(currentNav) %>
-    <% } else if (currentNav == 'account-management') { %>
-        <%- include(currentNav) %>
-    <% } %>
+    <%- include(currentNav) %>
 
     <%- include('../components/footer') %>
 

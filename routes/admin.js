@@ -2,6 +2,14 @@ const express = require('express');
 
 const router = express.Router();
 
+router.get('/', async function(req, res, next) {
+    const view = req.query.view;
+    res.render('admin/mainBody', {
+        currentNav: req.query.view,
+        profileName: req.user.admin_name,
+        role: req.user.role
+    });
+});
 router.get('/dashboard', async function(req, res, next) {
     res.render('admin/mainBody', { 
         currentNav: 'dashboard',
