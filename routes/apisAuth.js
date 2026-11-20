@@ -107,7 +107,7 @@ router.post('/getUsersList', async function(req, res, next) {
             deptNum = 0;
             break;
     }
-console.error(`TESTING:::::${limit}::${offset}`)
+
     try {
         if(deptNum > 0) {
             const result = await pool.query(`
