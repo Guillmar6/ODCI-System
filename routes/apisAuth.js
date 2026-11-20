@@ -3,6 +3,7 @@ const nodemailer = require('nodemailer');
 const express = require('express');
 
 const pool = require('../config/db');
+const { authorizedRole } = require('../config/auth');
 
 const router = express.Router();
 
@@ -14,7 +15,7 @@ const emailMessage = nodemailer.createTransport({
         pass: process.env.SUPER_ADMIN_EMAIL_PASSWORD
     }
 });
-router.post('/sendEmailMessage', async function(req, res, next) {
+router.post('/sendEmailMessage', authorizedRole('superAdmin'), async function(req, res, next) {
     const {
         userEmail,
         subject,
@@ -78,6 +79,54 @@ router.post('/addNewAccount', async function(req, res, next) {
             `);
         }
         res.status(200).json({message: 'Account created.'});
+    } catch (err) {
+        console.error(err);
+    }
+});
+
+// Get users list
+router.post('/getUsersList', async function(req, res, next) {
+    const {
+        offset,
+        limit,
+        department
+    } = req.body;
+
+    var deptNum = null;
+    switch (department) {
+        case 'ITD':
+            deptNum = 1;
+            break;
+        case 'TED':
+            deptNum = 2;
+            break;
+        case 'ASD':
+            deptNum = 3;
+            break;
+        default:
+            deptNum = 0;
+            break;
+    }
+console.error(`TESTING:::::${limit}::${offset}`)
+    try {
+        if(deptNum > 0) {
+            const result = await pool.query(`
+                SELECT *
+                FROM users
+                WHERE department=${deptNum}
+                ORDER BY faculty_name ASC
+                LIMIT ${limit} OFFSET ${offset};
+            `);
+            res.status(200).json(result.rows);
+        } else {
+            const result = await pool.query(`
+                SELECT *
+                FROM users
+                ORDER BY faculty_name ASC
+                LIMIT ${limit} OFFSET ${offset};
+            `);
+            res.status(200).json(result.rows);
+        }
     } catch (err) {
         console.error(err);
     }

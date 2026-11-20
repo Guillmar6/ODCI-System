@@ -23,18 +23,6 @@
                     </tr>
                 </thead>
                 <tbody id="accountListBody">
-                    <tr>
-                        <td>Sample Name</td>
-                        <td>sample@cvsu.edu.ph</td>
-                        <td>****</td>
-                        <td>ITD</td>
-                        <td>faculty</td>
-                        <td>00/00/00</td>
-                        <td>
-                            <button>Edit</button>
-                            <button>Remove</button>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
         </div>
@@ -146,3 +134,55 @@
         }
     }
 </style>
+<script>
+    var previousDataGetUsers;
+    const accountListBody = document.getElementById('accountListBody');
+    async function getUsersList(offset, limit, department = null) {
+        try {
+            const data = {
+                offset: offset,
+                limit: limit,
+                department: department
+            };
+            const response = await fetch('/apiAuth/getUsersList', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            if(!response.ok) return console.error('Error fetching users: ' + response.status);
+
+            const result = await response.json();
+            if(previousDataGetUsers === JSON.stringify(result)) return;
+            previousDataGetUsers = JSON.stringify(result);
+
+            const accountListBody = document.getElementById('accountListBody');
+            accountListBody.innerHTML = '';
+
+            result.forEach(row => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${row.faculty_name}</td>
+                    <td>${row.email}</td>
+                    <td>${row.password}</td>
+                    <td>${row.department}</td>
+                    <td>${row.role}</td>
+                    <td>${row.joined_date}</td>
+                    <td>
+                        <button>Edit</button>
+                        <button>Remove</button>
+                    </td>
+                `;
+                accountListBody.appendChild(tr);
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    }
+    getUsersList(0, 10);
+    setInterval(() => {
+        getUsersList(0, 10);
+    }, 3000);
+</script>
