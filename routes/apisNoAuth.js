@@ -42,7 +42,7 @@ router.post('/login', async function(req, res, next) {
     } catch (err) {
         console.error(err);
     }
-    res.redirect('/dashboard');
+    res.redirect('/user?view=dashboard');
 });
 
 // login api for ADMINS
@@ -81,7 +81,7 @@ router.post('/admin/login', async function(req, res, next) {
     } catch (err) {
         console.error(err);
     }
-    res.redirect('/admin/dashboard');
+    res.redirect('/admin?view=dashboard');
 });
 
 // Logout

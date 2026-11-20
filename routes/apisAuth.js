@@ -132,6 +132,31 @@ router.post('/getUsersList', async function(req, res, next) {
     }
 });
 
+// Remove user
+router.post('/removeUser', async function(req, res, next) {
+    const { 
+        facultyName,
+        email,
+        password,
+        department,
+        role
+    } = req.body;
+
+    try {
+        const result = await pool.query(`
+            DELETE FROM users
+            WHERE faculty_name='${facultyName}'
+            AND email='${email}'
+            AND password='${password}'
+            AND department='${department}'
+            AND role='${role}';
+        `);
+        res.status(200).json({message: 'Account removed!'});
+    } catch (err) {
+        console.error(err);
+    }
+});
+
 // Get departments
 router.get('/getDepartments', async function(req, res, next) {
     try {

@@ -135,6 +135,31 @@
     }
 </style>
 <script>
+    async function removeUser(row) {
+        if(!confirm('Are you sure you want to remove this user?')) return;
+        const data = {
+            facultyName: row.faculty_name,
+            email: row.email,
+            password: row.password,
+            department: row.department,
+            role: row.role
+        };
+        try {
+            const response = await fetch('/apiAuth/removeUser', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+            if(!response.ok) return console.log('Error removing user: ' + response.status);
+            
+            alert('Account removed!');
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
     var previousDataGetUsers;
     const accountListBody = document.getElementById('accountListBody');
     async function getUsersList(offset, limit, department = null) {
@@ -163,18 +188,34 @@
 
             result.forEach(row => {
                 const tr = document.createElement('tr');
+                var deptName;
+                switch (row.department) {
+                    case 1:
+                        deptName = 'ITD'
+                        break;
+                    case 2:
+                        deptName = 'TED'
+                        break;
+                    case 3:
+                        deptName = 'ASD'
+                        break;
+                    default:
+                        break;
+                }
                 tr.innerHTML = `
                     <td>${row.faculty_name}</td>
                     <td>${row.email}</td>
                     <td>${row.password}</td>
-                    <td>${row.department}</td>
+                    <td>${deptName}</td>
                     <td>${row.role}</td>
                     <td>${row.joined_date}</td>
                     <td>
-                        <button>Edit</button>
-                        <button>Remove</button>
+                        <button class="editButton">Edit</button>
+                        <button class="removeButton">Remove</button>
                     </td>
                 `;
+                tr.querySelector('.editButton').addEventListener('click', () => { editUser(row); });
+                tr.querySelector('.removeButton').addEventListener('click', () => { removeUser(row); });
                 accountListBody.appendChild(tr);
             });
         } catch (err) {

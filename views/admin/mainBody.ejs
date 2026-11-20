@@ -8,19 +8,19 @@
 </head>
 <body>
     <div id="addAccountBackContainer">
-        <form id="addAccountContainer">
+        <div id="addAccountContainer">
             <span id="addAccountTitle">Add new account</span>
             <div class="inputContainers">
                 <label for="facultyName">Faulty name</label>
-                <input name="facultyName" type="text" placeholder="Enter faculty name" required>
+                <input name="facultyName" id="addUserName" type="text" placeholder="Enter faculty name" required>
             </div>
             <div class="inputContainers">
                 <label for="email">Email address</label>
-                <input name="email" type="text" placeholder="Enter university email" required>
+                <input name="email" id="addUserEmail" type="text" placeholder="Enter university email" required>
             </div>
             <div class="inputContainers">
                 <label for="password">Password</label>
-                <input name="password" type="password" placeholder="Set a password" required>
+                <input name="password" id="addUserPassword" type="password" placeholder="Set a password" required>
             </div>
             <div class="inputContainers">
                 <label for="department">Department</label>
@@ -38,7 +38,7 @@
             </div>
             <div class="inputContainers">
                 <label for="date">Date<small>(Default current date)</small></label>
-                <input name="date" type="date">
+                <input name="date" id="addUserDate" type="date">
             </div>
             <div style="width: 100%; padding-top: 10px; padding-bottom: 30px;">
                 <span style="font-size: 1.1rem; font-weight: 500 !important; color: #2e2e2e;">All field are required.</span>
@@ -47,7 +47,7 @@
                 <a href="#" style="text-decoration: none;"><div class="addAccountBtnConfirmation" id="addAccountCancelBtn">Cancel</div></a>
                 <a href="#" style="text-decoration: none;"><button class="addAccountBtnConfirmation" id="addAccountCreateBtn" onclick="sendNewAccount()">Create account</button></a>
             </div>
-        </form>
+        </div>
     </div>
     <style>
         #addAccountBackContainer {
@@ -170,10 +170,21 @@
         }
         getDepartments();
 
-        const form = document.getElementById('addAccountContainer');
+        const addUserName = document.getElementById('addUserName');
+        const addUserEmail = document.getElementById('addUserEmail');
+        const addUserPassword = document.getElementById('addUserPassword');
+        const addUserDepartment = document.getElementById('departmentContainer');
+        const addUserRole = document.getElementById('roleContainer');
+        const addUserDate = document.getElementById('addUserDate');
         async function sendNewAccount() {
-            const formData = new FormData(form);
-            const payload = Object.fromEntries(formData.entries());
+            const data = {
+                facultyName: addUserName.value,
+                email: addUserEmail.value,
+                password: addUserPassword.value,
+                department: addUserDepartment.value,
+                role: addUserRole.value,
+                date: addUserDate.value
+            };
 
             try {
                 const response = await fetch('/apiAuth/addNewAccount', {
@@ -181,15 +192,14 @@
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(payload)
+                    body: JSON.stringify(data)
                 });
 
                 if(!response.ok) return console.error(response.status);
 
                 const result = await response.json();
-                console.log('Account created successfully: ', result);
-                form.reset();
                 window.location.href = '#';
+                alert('New account created!');
             } catch (err) {
                 console.error(err);
             }
