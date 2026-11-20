@@ -142,7 +142,8 @@
             email: row.email,
             password: row.password,
             department: row.department,
-            role: row.role
+            role: row.role,
+            joined_date: row.joined_date
         };
         try {
             const response = await fetch('/apiAuth/removeUser', {

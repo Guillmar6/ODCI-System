@@ -111,7 +111,7 @@ router.post('/getUsersList', async function(req, res, next) {
     try {
         if(deptNum > 0) {
             const result = await pool.query(`
-                SELECT *
+                SELECT *, TO_CHAR(joined_date, 'YYYY-MM-DD') AS joined_date
                 FROM users
                 WHERE department=${deptNum}
                 ORDER BY faculty_name ASC
@@ -120,7 +120,7 @@ router.post('/getUsersList', async function(req, res, next) {
             res.status(200).json(result.rows);
         } else {
             const result = await pool.query(`
-                SELECT *
+                SELECT *, TO_CHAR(joined_date, 'YYYY-MM-DD') AS joined_date
                 FROM users
                 ORDER BY faculty_name ASC
                 LIMIT ${limit} OFFSET ${offset};
@@ -139,7 +139,8 @@ router.post('/removeUser', async function(req, res, next) {
         email,
         password,
         department,
-        role
+        role,
+        joined_date
     } = req.body;
 
     try {
@@ -149,7 +150,8 @@ router.post('/removeUser', async function(req, res, next) {
             AND email='${email}'
             AND password='${password}'
             AND department='${department}'
-            AND role='${role}';
+            AND role='${role}'
+            AND joined_date='${joined_date}';
         `);
         res.status(200).json({message: 'Account removed!'});
     } catch (err) {
